@@ -5,6 +5,30 @@ TagManager:
   serializedVersion: 3
   tags:
   - Target
+  - QDSUISection
+  - QDSUIAccentColor
+  - QDSUISecondaryButton
+  - QDSUIPrimaryButton
+  - QDSUITextSecondaryInvertedColor
+  - QDSUITextInvertedColor
+  - QDSUIToggleButton
+  - QDSUIIcon
+  - QDSUITextSecondaryColor
+  - QDSUIDestructiveButton
+  - QDSUISharedThemeColor
+  - QDSUIBorderlessButton
+  - QDSUIToggleBorderlessButton
+  - QDSUIBackplateGradient
+  - QDSUITooltip
+  - QDSUIToggleSwitch
+  - PassThroughButton
+  - PassThrough
+  - Locomotion
+  - LocoButton
+  - LocoText
+  - QDSUITextInputField
+  - SamplesInfoPanel
+  - QDSUIToggleCheckboxRadio
   layers:
   - Default
   - TransparentFX
@@ -12,6 +36,7 @@ TagManager:
   - Overlay UI
   - Water
   - UI
+  - Saddle
   - 
   - 
   - 
@@ -35,8 +60,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - XR Simulation
   - 
   m_SortingLayers:
   - name: Default
