@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Meta.XR.BuildingBlocks::Meta.XR.BuildingBlocks.BuildingBlock
   blockId: 7358e191-33b7-43ca-b066-b2f00531ac66
-  instanceId: 95421b22-4ca6-40f7-880c-e4d9f879a4ac
+  instanceId: f63dc7a1-7afa-4904-912c-81ef92c38a06
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: 
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Meta.XR.BuildingBlocks::Meta.XR.BuildingBlocks.BuildingBlock
   blockId: 7358e191-33b7-43ca-b066-b2f00531ac66
-  instanceId: 9f2e233a-ab62-49d8-b03d-0ef4f8f7059a
+  instanceId: 46a25ad7-2249-451f-b0ff-ec207e57bf86
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: 
@@ -650,6 +650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HorseController
   halter: {fileID: 904080763476247802}
   playerRig: {fileID: 0}
+  saddle: {fileID: 7503197737135688555}
   minSpeed: 0
   maxSpeed: 8
   acceleration: 2
@@ -800,7 +801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Meta.XR.BuildingBlocks::Meta.XR.BuildingBlocks.BuildingBlock
   blockId: f8766c17-aaf8-4b55-9431-de8deea83842
-  instanceId: f596feb5-59a3-469c-8c1a-2ba4a08020e1
+  instanceId: 87c4c515-2d62-4699-af37-68aa6b72fc0d
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: f8338144-8280-4ff6-9455-ae2bb9c20fe8
@@ -876,7 +877,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Meta.XR.BuildingBlocks::Meta.XR.BuildingBlocks.BuildingBlock
   blockId: f8766c17-aaf8-4b55-9431-de8deea83842
-  instanceId: fc9a8100-f663-42b0-bd7c-d25be2fb1ee3
+  instanceId: 9345b56c-b0a7-49fa-ae83-b88c96270bd2
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: f8338144-8280-4ff6-9455-ae2bb9c20fe8

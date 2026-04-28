@@ -6,6 +6,7 @@ public class HorseController : MonoBehaviour
 
     public Transform playerRig;
     private float lastHorseYaw;
+    public SaddleBehaviour saddle;
 
     [Header("Speed")]
     public float minSpeed = 0f;
@@ -27,7 +28,6 @@ public class HorseController : MonoBehaviour
     public bool isReinsGrabbed = false;
 
     public void OnGrab()
-
     {
         isReinsGrabbed = true;
     }
@@ -39,7 +39,7 @@ public class HorseController : MonoBehaviour
 
     void Update()
     {
-        if (!isReinsGrabbed)
+        if (!isReinsGrabbed || saddle.isMounted == false)
         {
             currentSpeed = Mathf.Lerp(currentSpeed, 0f, acceleration * Time.deltaTime);
             currentTurnRate = Mathf.Lerp(currentTurnRate, 0f, turnSmoothness * Time.deltaTime);

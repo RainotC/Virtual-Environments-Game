@@ -10,7 +10,7 @@ public class LassoProjectile : MonoBehaviour
         if (other.gameObject.CompareTag("Target"))
         {
             OnTargetCatch();
-            gameObject.GetComponent<Target>().Catch(); //propably shouldn't be called from here
+            other.gameObject.GetComponent<Target>().Catch(); //propably shouldn't be called from here
         }
     }
     public void OnTargetCatch()
