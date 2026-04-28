@@ -4,10 +4,10 @@ using UnityEngine;
 public class LassoProjectile : MonoBehaviour
 {
     [SerializeField] private TMP_Text infoText;
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         Debug.Log("Lasso collided with: " + other.gameObject.name);
-        if (other.CompareTag("Target"))
+        if (other.gameObject.CompareTag("Target"))
         {
             OnTargetCatch();
         }

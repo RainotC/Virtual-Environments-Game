@@ -6,7 +6,6 @@ public class Lasso : MonoBehaviour
 {
     [SerializeField] private TMP_Text infoText;
 
-    [SerializeField] private WristRotationDetection wristRotationDetection;
     [SerializeField] private GameObject lassoProjectile;
     [SerializeField] private Transform lassoAnchor;
     [SerializeField] private InputManager lassoControllerInputManager;
@@ -22,11 +21,13 @@ public class Lasso : MonoBehaviour
     private Rigidbody rb;
     private SpringJoint joint;
     private bool isLassoing = false;
+    private WristRotationDetection wristRotationDetection;
+
 
 
     private void Start()
     {
-
+        wristRotationDetection = GetComponent<WristRotationDetection>();
         rb = lassoProjectile.GetComponent<Rigidbody>();
         joint = lassoProjectile.GetComponent<SpringJoint>();
 
@@ -39,7 +40,6 @@ public class Lasso : MonoBehaviour
             if (!isThrown && wristRotationDetection.isTwisting)
             {
                 isLassoing = true;
-                Debug.Log("Lassoing...");
             }
             else
             {
@@ -51,13 +51,20 @@ public class Lasso : MonoBehaviour
             if (isLassoing)
             {
                 ThrowLasso();
-                isLassoing = false;
+            }
+        };
+        lassoControllerInputManager.OnTriggerPressed += () =>
+        {
+            if (isThrown)
+            {
+                ResetLasso();
             }
         };
 
     }
     private void ThrowLasso()
     {
+        isLassoing = false;
         joint.maxDistance = thrownDistance;
         joint.minDistance = thrownDistance;
 
@@ -67,6 +74,18 @@ public class Lasso : MonoBehaviour
         isThrown = true;
         Debug.Log("Lasso thrown!");
 
+    }
+
+    private void ResetLasso()
+    {
+        joint.maxDistance = lassoingDistance;
+        joint.minDistance = lassoingDistance;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        lassoProjectile.transform.position = lassoAnchor.position;
+        lassoProjectile.transform.rotation = lassoAnchor.rotation;
+        isThrown = false;
+        Debug.Log("Lasso reset!");
     }
 
 }
