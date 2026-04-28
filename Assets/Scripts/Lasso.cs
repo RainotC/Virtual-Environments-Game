@@ -9,6 +9,7 @@ public class Lasso : MonoBehaviour
     [SerializeField] private WristRotationDetection wristRotationDetection;
     [SerializeField] private GameObject lassoProjectile;
     [SerializeField] private Transform lassoAnchor;
+    [SerializeField] private InputManager lassoControllerInputManager;
 
     public float lassoingDistance = 0.5f;
     public float thrownDistance = 2f;
@@ -20,36 +21,41 @@ public class Lasso : MonoBehaviour
     private bool isThrown = false;
     private Rigidbody rb;
     private SpringJoint joint;
+    private bool isLassoing = false;
+
 
     private void Start()
     {
+
         rb = lassoProjectile.GetComponent<Rigidbody>();
         joint = lassoProjectile.GetComponent<SpringJoint>();
 
         joint.maxDistance = lassoingDistance;
         joint.minDistance = lassoingDistance;
 
-    }
 
-    private void Update()
-    {
-
-        if (wristRotationDetection.isTwisting)
+        lassoControllerInputManager.OnTriggerHeld += () =>
         {
-            //better to have lassoing on button pressed and throw on release
-            infoText.text = "Lassoing";
-            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch))
+            if (!isThrown && wristRotationDetection.isTwisting)
             {
-                Debug.Log("Trigger pressed while twisting!");
-                ThrowLasso();
+                isLassoing = true;
+                Debug.Log("Lassoing...");
             }
-        }
-        else
+            else
+            {
+                isLassoing = false;
+            }
+        };
+        lassoControllerInputManager.OnTriggerReleased += () =>
         {
-            infoText.text = "Idle";
-        }
-    }
+            if (isLassoing)
+            {
+                ThrowLasso();
+                isLassoing = false;
+            }
+        };
 
+    }
     private void ThrowLasso()
     {
         joint.maxDistance = thrownDistance;
