@@ -45,14 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdddbceec4ade174e9bdf1af908bf50b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lasso
-  infoText: {fileID: 0}
   lassoProjectile: {fileID: 8342188387986170518}
   lassoAnchor: {fileID: 0}
   lassoControllerInputManager: {fileID: 0}
   lassoingDistance: 0.5
   thrownDistance: 2
   ropeLength: 0.5
-  hand: {fileID: 0}
   throwForce: 10
 --- !u!114 &6224373779673667245
 MonoBehaviour:
@@ -181,9 +179,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4830573798758878372, guid: 326a96637606eca41b6ffd6ce92446d8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3387438527745091578}
-    - targetCorrespondingSourceObject: {fileID: 4830573798758878372, guid: 326a96637606eca41b6ffd6ce92446d8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4939690674604105229}
   m_SourcePrefab: {fileID: 100100000, guid: 326a96637606eca41b6ffd6ce92446d8, type: 3}
 --- !u!1 &8342188387986170518 stripped
 GameObject:
@@ -217,30 +212,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!145 &4939690674604105229
-SpringJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8342188387986170518}
-  serializedVersion: 4
-  m_ConnectedBody: {fileID: 0}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_Anchor: {x: 0, y: 0, z: 0}
-  m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
-  m_Spring: 10000
-  m_Damper: 100
-  m_MinDistance: 0
-  m_MaxDistance: 0.5
-  m_Tolerance: 0.025
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 1
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!4 &8660949506674816247 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5259380647384488645, guid: 326a96637606eca41b6ffd6ce92446d8, type: 3}
