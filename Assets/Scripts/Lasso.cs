@@ -16,7 +16,7 @@ public class Lasso : MonoBehaviour
 
     public float ropeLength = 0.5f;
 
-    public Transform hand;
+    public Transform hand; //propably should use this
     public float throwForce = 4f;
     private bool isThrown = false;
     private Rigidbody rb;
