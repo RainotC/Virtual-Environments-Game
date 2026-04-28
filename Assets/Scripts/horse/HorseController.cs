@@ -4,6 +4,9 @@ public class HorseController : MonoBehaviour
 {
     public Transform halter;
 
+    public Transform playerRig;
+    private float lastHorseYaw;
+
     [Header("Speed")]
     public float minSpeed = 0f;
     public float maxSpeed = 8f;
@@ -24,6 +27,7 @@ public class HorseController : MonoBehaviour
     public bool isReinsGrabbed = false;
 
     public void OnGrab()
+
     {
         isReinsGrabbed = true;
     }
@@ -47,6 +51,27 @@ public class HorseController : MonoBehaviour
         }
 
         MoveHorse();
+    }
+
+    void Start()
+    {
+        lastHorseYaw = transform.eulerAngles.y;
+    }
+
+    void LateUpdate()
+    {
+        RotatePlayerWithHorse();
+    }
+
+    void RotatePlayerWithHorse()
+    {
+        float currentYaw = transform.eulerAngles.y;
+
+        float deltaYaw = Mathf.DeltaAngle(lastHorseYaw, currentYaw);
+
+        playerRig.Rotate(0f, deltaYaw, 0f);
+
+        lastHorseYaw = currentYaw;
     }
 
     void HandleSpeed()
