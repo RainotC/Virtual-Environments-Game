@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class LassoProjectile : MonoBehaviour
 {
-    [SerializeField] private TMP_Text infoText;
     private void OnCollisionEnter(Collision other)
     {
         Debug.Log("Lasso collided with: " + other.gameObject.name);
@@ -16,7 +15,6 @@ public class LassoProjectile : MonoBehaviour
     public void OnTargetCatch()
     {
         Debug.Log("Target caught!");
-        infoText.text = "Catched";
 
     }
 }

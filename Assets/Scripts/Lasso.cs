@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Lasso : MonoBehaviour
 {
-    [SerializeField] private TMP_Text infoText;
 
     [SerializeField] private GameObject lassoProjectile;
-    [SerializeField] private Transform lassoAnchor;
+    [SerializeField] private Transform lassoAnchor; //propably shouldn't use this
     [SerializeField] private InputManager lassoControllerInputManager;
 
     public float lassoingDistance = 0.5f;
@@ -15,7 +14,6 @@ public class Lasso : MonoBehaviour
 
     public float ropeLength = 0.5f;
 
-    public Transform hand; //propably should use this
     public float throwForce = 4f;
     private bool isThrown = false;
     private Rigidbody rb;
@@ -68,7 +66,7 @@ public class Lasso : MonoBehaviour
         joint.maxDistance = thrownDistance;
         joint.minDistance = thrownDistance;
 
-        rb.linearVelocity = hand.forward * throwForce;
+        rb.linearVelocity = lassoAnchor.forward * throwForce;
 
 
         isThrown = true;
