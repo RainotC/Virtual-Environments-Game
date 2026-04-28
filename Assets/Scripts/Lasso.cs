@@ -80,7 +80,7 @@ public class Lasso : MonoBehaviour
     {
         joint.maxDistance = lassoingDistance;
         joint.minDistance = lassoingDistance;
-        rb.velocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         lassoProjectile.transform.position = lassoAnchor.position;
         lassoProjectile.transform.rotation = lassoAnchor.rotation;
