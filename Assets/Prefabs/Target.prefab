@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 239485382133914360}
   - component: {fileID: 1829559118896200918}
   - component: {fileID: 6066377283530945499}
-  - component: {fileID: 1480363477357626422}
   - component: {fileID: 4930611050960892538}
+  - component: {fileID: 6414676588736781156}
+  - component: {fileID: 6040741598160147998}
   m_Layer: 0
   m_Name: Target
   m_TagString: Target
@@ -116,24 +117,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1480363477357626422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 595852808947095155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9200d6453c198742a4a92e1daa1acd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  moveSpeed: 2
-  runSpeed: 5
-  minwaittime: 2
-  maxwaittime: 5
-  moveRadius: 5
-  scareDistance: 5
 --- !u!54 &4930611050960892538
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -161,3 +144,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &6414676588736781156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595852808947095155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b91aab4c542ac1548ad4cc75c2b62a66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Target
+  caughtMaterial: {fileID: 2100000, guid: 49dfba73210b5334e90b4118511d8074, type: 2}
+--- !u!114 &6040741598160147998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595852808947095155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9200d6453c198742a4a92e1daa1acd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CowAI
+  moveSpeed: 2
+  runSpeed: 5
+  minWaitTime: 2
+  maxWaitTime: 5
+  moveRadius: 10
+  scareDistance: 5
