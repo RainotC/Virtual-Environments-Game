@@ -33,7 +33,7 @@ public class Lasso : MonoBehaviour
         joint.minDistance = lassoingDistance;
 
 
-        lassoControllerInputManager.OnTriggerHeld += () =>
+        lassoControllerInputManager.OnIndexTriggerHeld += () =>
         {
             if (!isThrown && wristRotationDetection.isTwisting)
             {
@@ -44,7 +44,7 @@ public class Lasso : MonoBehaviour
                 isLassoing = false;
             }
         };
-        lassoControllerInputManager.OnTriggerReleased += () =>
+        lassoControllerInputManager.OnIndexTriggerReleased += () =>
         {
             if (isLassoing)
             {
@@ -55,7 +55,7 @@ public class Lasso : MonoBehaviour
                 UnsuccessfulLasso();
             }
         };
-        lassoControllerInputManager.OnTriggerPressed += () =>
+        lassoControllerInputManager.OnIndexTriggerPressed += () =>
         {
             if (isThrown)
             {
