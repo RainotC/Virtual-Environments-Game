@@ -69,8 +69,10 @@ public class Lasso : MonoBehaviour
         isLassoing = false;
         joint.maxDistance = thrownDistance;
         joint.minDistance = thrownDistance;
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
 
-        rb.linearVelocity = lassoAnchor.forward;
+        rb.linearVelocity = lassoAnchor.forward * throwForce;
 
 
         isThrown = true;
