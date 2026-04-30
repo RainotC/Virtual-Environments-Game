@@ -60,7 +60,6 @@ public class WristRotationDetection : MonoBehaviour
 
             idleTimer = 0f;
 
-            isTwisting = true;
             lastTwistTime = Time.time;
         }
         else
@@ -71,6 +70,7 @@ public class WristRotationDetection : MonoBehaviour
 
         if (Mathf.Abs(accumulatedTwistY) >= requiredAngle || Mathf.Abs(accumulatedTwistZ) >= requiredAngle)
         {
+            isTwisting = true;
             Debug.Log("Full twist detected!");
             accumulatedTwistY = 0f;
             accumulatedTwistZ = 0f;

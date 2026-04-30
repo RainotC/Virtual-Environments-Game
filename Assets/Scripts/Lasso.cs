@@ -81,7 +81,7 @@ public class Lasso : MonoBehaviour
     private void UnsuccessfulLasso()
     {
         Debug.Log("Lasso throw unsuccessful!");
-        isThrown = false;
+        isThrown = true;
         rb.linearVelocity = lassoAnchor.forward;
 
     }

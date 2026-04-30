@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class CowAI : MonoBehaviour
 {
-    public float moveSpeed = 2f;
-    public float runSpeed = 5f;
+    public float moveSpeed = 1.5f;
+    public float runSpeed = 3f;
     public float minWaitTime = 2f;
     public float maxWaitTime = 5f;
     public float moveRadius = 10f;

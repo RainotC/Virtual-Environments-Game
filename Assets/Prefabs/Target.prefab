@@ -169,8 +169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9200d6453c198742a4a92e1daa1acd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CowAI
-  moveSpeed: 2
-  runSpeed: 5
+  moveSpeed: 1.5
+  runSpeed: 3
   minWaitTime: 2
   maxWaitTime: 5
   moveRadius: 10
