@@ -12,7 +12,7 @@ public class WristRotationDetection : MonoBehaviour
     [Header("Settings")]
     public float minAngularVelocity = 80f;
     public float requiredAngle = 360f;
-    //public float axisThreshold = 0.7f; // jak bardzo musi byæ "w osi"
+    public float axisThreshold = 0.7f; // jak bardzo musi byæ "w osi"
     public float maxIdleTime = 0.2f;
 
     private Quaternion lastRotation;
@@ -55,11 +55,10 @@ public class WristRotationDetection : MonoBehaviour
 
         Vector3 localAxis = controller.InverseTransformDirection(axis);
         float twistAmountY = localAxis.y;
-        float twistAmountX = localAxis.x;
+        float twistAmountX = localAxis.z;
 
-        bool isMovingCorrectly = angularVelocity > minAngularVelocity;
-            //&&
-            //(Mathf.Abs(twistAmountY) > axisThreshold || Mathf.Abs(twistAmountX) > axisThreshold);
+        bool isMovingCorrectly = angularVelocity > minAngularVelocity &&
+            (Mathf.Abs(twistAmountY) > axisThreshold || Mathf.Abs(twistAmountX) > axisThreshold);
 
         if (isMovingCorrectly)
         {
