@@ -6,18 +6,18 @@ public class WristRotationDetection : MonoBehaviour
     [SerializeField] private Transform centerEyeAnchor;
     public bool isTwisting { get; private set; }
     public float lastTwistTime { get; private set; }
-    public float gracePeriod = 0.5f;
+    public float gracePeriod = 0.3f;
 
 
     [Header("Settings")]
     public float minAngularVelocity = 80f;
     public float requiredAngle = 360f;
-    public float axisThreshold = 0.7f; // jak bardzo musi byæ "w osi"
+    public float axisThreshold = 0.7f; // jak bardzo musi by? "w osi"
     public float maxIdleTime = 0.2f;
 
     private Quaternion lastRotation;
     private float accumulatedTwistY = 0f;
-    private float accumulatedTwistX = 0f;
+    private float accumulatedTwistZ = 0f;
     private float idleTimer = 0f;
 
     void Start()
@@ -27,19 +27,11 @@ public class WristRotationDetection : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Is twisting: " + isTwisting);
-        float length = 0.2f;
-
-        Debug.DrawRay(controller.position, controller.forward * length, Color.blue);
-        Debug.DrawRay(controller.position, controller.right * length, Color.red);
-        Debug.DrawRay(controller.position, controller.up * length, Color.green);
-
-
         if (controller.position.y < centerEyeAnchor.position.y)
         {
             isTwisting = false;
             accumulatedTwistY = 0f;
-            accumulatedTwistX = 0f;
+            accumulatedTwistZ = 0f;
             idleTimer = 0f;
             return;
         }
@@ -55,18 +47,20 @@ public class WristRotationDetection : MonoBehaviour
 
         Vector3 localAxis = controller.InverseTransformDirection(axis);
         float twistAmountY = localAxis.y;
-        float twistAmountX = localAxis.z;
+        float twistAmountZ = localAxis.z;
 
-        bool isMovingCorrectly = angularVelocity > minAngularVelocity &&
-            (Mathf.Abs(twistAmountY) > axisThreshold || Mathf.Abs(twistAmountX) > axisThreshold);
+        bool isMovingCorrectly =
+            angularVelocity > minAngularVelocity &&
+            (Mathf.Abs(twistAmountY) > axisThreshold || Mathf.Abs(twistAmountZ) > axisThreshold);
 
         if (isMovingCorrectly)
         {
             accumulatedTwistY += angle * Mathf.Sign(twistAmountY);
-            accumulatedTwistX += angle * Mathf.Sign(twistAmountX);
+            accumulatedTwistZ += angle * Mathf.Sign(twistAmountZ);
 
             idleTimer = 0f;
 
+            isTwisting = true;
             lastTwistTime = Time.time;
         }
         else
@@ -75,26 +69,24 @@ public class WristRotationDetection : MonoBehaviour
         }
 
 
-        if (Mathf.Abs(accumulatedTwistY) >= requiredAngle || Mathf.Abs(accumulatedTwistX) >= requiredAngle)
+        if (Mathf.Abs(accumulatedTwistY) >= requiredAngle || Mathf.Abs(accumulatedTwistZ) >= requiredAngle)
         {
             Debug.Log("Full twist detected!");
-
-            isTwisting = true;
             accumulatedTwistY = 0f;
-            accumulatedTwistX = 0f;
+            accumulatedTwistZ = 0f;
         }
 
         if (Time.time - lastTwistTime > gracePeriod)
         {
             isTwisting = false;
             accumulatedTwistY = 0f;
-            accumulatedTwistX = 0f;
+            accumulatedTwistZ = 0f;
         }
 
         if (idleTimer > maxIdleTime)
         {
             accumulatedTwistY = 0f;
-            accumulatedTwistX = 0f;
+            accumulatedTwistZ = 0f;
         }
 
         lastRotation = current;

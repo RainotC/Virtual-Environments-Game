@@ -55,7 +55,7 @@ public class Lasso : MonoBehaviour
                 UnsuccessfulLasso();
             }
         };
-        lassoControllerInputManager.OnIndexTriggerPressed += () =>
+        lassoControllerInputManager.OnHandTriggerPressed += () =>
         {
             if (isThrown)
             {
@@ -95,6 +95,7 @@ public class Lasso : MonoBehaviour
         lassoProjectile.transform.position = lassoAnchor.position;
         lassoProjectile.transform.rotation = lassoAnchor.rotation;
         isThrown = false;
+        isLassoing = false;
         Debug.Log("Lasso reset!");
     }
 
