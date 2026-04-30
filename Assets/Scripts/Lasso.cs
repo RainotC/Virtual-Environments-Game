@@ -50,6 +50,10 @@ public class Lasso : MonoBehaviour
             {
                 ThrowLasso();
             }
+            else if(!isThrown)
+            {
+                UnsuccessfulLasso();
+            }
         };
         lassoControllerInputManager.OnTriggerPressed += () =>
         {
@@ -71,6 +75,14 @@ public class Lasso : MonoBehaviour
 
         isThrown = true;
         Debug.Log("Lasso thrown!");
+
+    }
+
+    private void UnsuccessfulLasso()
+    {
+        Debug.Log("Lasso throw unsuccessful!");
+        isThrown = false;
+        rb.linearVelocity = lassoAnchor.forward;
 
     }
 

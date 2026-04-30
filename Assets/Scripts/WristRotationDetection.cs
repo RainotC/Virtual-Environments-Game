@@ -27,6 +27,14 @@ public class WristRotationDetection : MonoBehaviour
 
     void Update()
     {
+
+        float length = 0.2f;
+
+        Debug.DrawRay(controller.position, controller.forward * length, Color.blue);
+        Debug.DrawRay(controller.position, controller.right * length, Color.red);
+        Debug.DrawRay(controller.position, controller.up * length, Color.green);
+
+
         if (controller.position.y < centerEyeAnchor.position.y)
         {
             isTwisting = false;
