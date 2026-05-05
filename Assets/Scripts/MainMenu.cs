@@ -1,15 +1,11 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public void StartGame()
+    public void OnPlayButtonPressed()
     {
-        Debug.Log("PRZYCISK WCISNIEWTY ");
-        if (Application.CanStreamedLevelBeLoaded("LevelDesign"))
-        {
-            Debug.Log("£adowanie sceny: LevelDesign");
-            SceneManager.LoadScene("LevelDesign");
-        }
+        Debug.Log("ADFGFDGSGFDSFDGSFDGFGDSGFDSSGDFDL");
+        // Tutaj dodasz póŸniej logikê, np. za³adowanie sceny
     }
 }
