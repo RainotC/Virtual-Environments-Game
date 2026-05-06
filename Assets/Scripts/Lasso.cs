@@ -46,6 +46,7 @@ public class Lasso : MonoBehaviour
         };
         lassoControllerInputManager.OnIndexTriggerReleased += () =>
         {
+            lassoProjectile.GetComponent<Collider>().isTrigger = false;
             if (isLassoing)
             {
                 ThrowLasso();
@@ -98,6 +99,7 @@ public class Lasso : MonoBehaviour
         lassoProjectile.transform.rotation = lassoAnchor.rotation;
         isThrown = false;
         isLassoing = false;
+        lassoProjectile.GetComponent<Collider>().isTrigger = true;
         Debug.Log("Lasso reset!");
     }
 
