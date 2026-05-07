@@ -138,6 +138,7 @@ public class Lasso : MonoBehaviour
     {
         Debug.Log("Lasso throw unsuccessful!");
         isThrown = true;
+        IsLassoing = false;
         projectileRB.linearVelocity = lassoAnchor.forward;
 
     }
@@ -151,10 +152,11 @@ public class Lasso : MonoBehaviour
 
 
         lassoProjectile.transform.position = lassoAnchor.position;
-        //lassoProjectile.transform.rotation = lassoAnchor.rotation;
         
         isThrown = false;
-        IsLassoing = false;
+        ringCorrect.gameObject.SetActive(false); // maybe should do this in some function 
+        ringWrong.gameObject.SetActive(true);
+
         velocityBuffer.Clear();
         Debug.Log("Lasso reset!");
     }
@@ -172,14 +174,17 @@ public class Lasso : MonoBehaviour
 
     private void OnLassoingChanged(bool value)
     {
+        Debug.Log("OnLassoingChanged");
         if (isThrown) return;
         if (value)
         {
+            Debug.Log("OnLassoingChanged: Lassoing");
             ringCorrect.gameObject.SetActive(true);
             ringWrong.gameObject.SetActive(false);
         }
         else
         {
+            Debug.Log("OnLassoingChanged: Not Lassoing");
             ringCorrect.gameObject.SetActive(false);
             ringWrong.gameObject.SetActive(true);
         }

@@ -18,17 +18,14 @@ public class InputManager : MonoBehaviour
         }
         if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, controller))
         {
-            Debug.Log("trigger pressed!");
             OnIndexTriggerPressed?.Invoke();
         }
         if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger, controller))
         {
-            Debug.Log("trigger released!");
             OnIndexTriggerReleased?.Invoke();
         }
         if(OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, controller))
         {
-            Debug.Log("Hand trigger pressed!");
             OnHandTriggerPressed?.Invoke();
         }
     }
