@@ -13,7 +13,6 @@ public class InputManager : MonoBehaviour
     {
         if (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, controller) > 0.1f)
         {
-            Debug.Log("Held");
             OnIndexTriggerHeld?.Invoke();
 
         }
