@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class LassoProjectile : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Lasso collided with: " + other.gameObject.name);
         if (other.gameObject.CompareTag("Target"))

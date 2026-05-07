@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8171266135941241507
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4297401701569810214}
+  - component: {fileID: 8594652197837650730}
+  - component: {fileID: 1452215626075566263}
+  m_Layer: 0
+  m_Name: LassoManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4297401701569810214
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8171266135941241507}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8594652197837650730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8171266135941241507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 509608c99cdb39047b7be2fa458fbc81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Lasso
+  lassoPhysicalBall: {fileID: 0}
+  lassoProjectile: {fileID: 0}
+  lassoRingMeshCollider: {fileID: 0}
+  lassoAnchor: {fileID: 0}
+  lassoControllerInputManager: {fileID: 0}
+  ringCorrect: {fileID: 0}
+  ringWrong: {fileID: 0}
+  lassoingDistance: 0.5
+  thrownDistance: 2
+  throwLift: 1.5
+  ropeLength: 0.5
+  throwForce: 2
+--- !u!114 &1452215626075566263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8171266135941241507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fd0e5e716b59f540ab6418a4bd6e3ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WristRotationDetection
+  controller: {fileID: 0}
+  centerEyeAnchor: {fileID: 0}
+  gracePeriod: 0.3
+  minAngularVelocity: 80
+  requiredAngle: 90
+  axisThreshold: 0.7
+  maxIdleTime: 0.3

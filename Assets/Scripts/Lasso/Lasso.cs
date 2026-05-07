@@ -7,6 +7,7 @@ using UnityEngine;
 public class Lasso : MonoBehaviour
 {
 
+    [SerializeField] private GameObject lassoPhysicalBall;
     [SerializeField] private GameObject lassoProjectile;
     [SerializeField] private Transform lassoAnchor; //propably shouldn't use this
     [SerializeField] private InputManager lassoControllerInputManager;
@@ -17,12 +18,19 @@ public class Lasso : MonoBehaviour
 
     [Header("Throw settings")]
     public float lassoingDistance = 0.5f;
-    public float thrownDistance = 2;
-    public float throwLift = 1.5f;
-
+    public float succesfullThrowRopeLength = 2.5f;
+    public float unsucessfullThrowRopeLength = 1f;
+    public float throwLift = 1.5f; //does it work?
     public float ropeLength = 0.5f;
+    public float throwForce = 1.5f;
+    public float unsuccessfulThrowForce = 0.5f;
 
-    public float throwForce = 2f;
+    [Header("Rope colors")]
+    public Material lassoingMaterial;
+    public Material notLassoingMaterial;
+    public Material neutralMaterial;
+    public Renderer ropeVisual;
+
     private bool isThrown = false;
     private Rigidbody projectileRB;
     private SpringJoint joint;
@@ -51,8 +59,8 @@ public class Lasso : MonoBehaviour
         lastPos = lassoAnchor.position;
         wristRotationDetection = GetComponent<WristRotationDetection>();
 
-        projectileRB = lassoProjectile.GetComponent<Rigidbody>();
-        joint = lassoProjectile.GetComponent<SpringJoint>();
+        projectileRB = lassoPhysicalBall.GetComponent<Rigidbody>();
+        joint = lassoPhysicalBall.GetComponent<SpringJoint>();
 
         joint.maxDistance = lassoingDistance;
         joint.minDistance = lassoingDistance;
@@ -60,9 +68,11 @@ public class Lasso : MonoBehaviour
 
         lassoControllerInputManager.OnIndexTriggerHeld += () =>
         {
+            Debug.Log("Index trigger held. Wrist twisting:");
             if (!isThrown && wristRotationDetection.isTwisting)
             {
                 IsLassoing = true;
+                Debug.Log("Started lassoing!");
             }
             else
             {
@@ -74,6 +84,7 @@ public class Lasso : MonoBehaviour
             if (IsLassoing)
             {
                 ThrowLasso();
+                Debug.Log("Throwing lasso!");
             }
             else if(!isThrown)
             {
@@ -111,14 +122,14 @@ public class Lasso : MonoBehaviour
     private void ThrowLasso()
     {
 
-
+        lassoProjectile.SetActive(true);
         Vector3 currentPos = lassoAnchor.position;
         Vector3 velocity = (currentPos - lastPos) / Time.deltaTime;
 
         isThrown = true;
         IsLassoing = false;
-        joint.maxDistance = thrownDistance;
-        joint.minDistance = thrownDistance;
+        joint.maxDistance = succesfullThrowRopeLength;
+        joint.minDistance = succesfullThrowRopeLength;
         projectileRB.linearVelocity = Vector3.zero;
         projectileRB.angularVelocity = Vector3.zero;
 
@@ -129,7 +140,6 @@ public class Lasso : MonoBehaviour
         projectileRB.linearVelocity = throwVelocity * throwForce;
         //rb.linearVelocity = lassoAnchor.forward * throwForce; //to trzeba zmieniæ na wyczytywanie wektora
 
-
         Debug.Log("Lasso thrown!");
 
     }
@@ -139,25 +149,31 @@ public class Lasso : MonoBehaviour
         Debug.Log("Lasso throw unsuccessful!");
         isThrown = true;
         IsLassoing = false;
-        projectileRB.linearVelocity = lassoAnchor.forward;
+        joint.maxDistance = unsucessfullThrowRopeLength;
+        joint.minDistance = lassoingDistance;
+        projectileRB.linearVelocity = lassoAnchor.forward * unsuccessfulThrowForce;
 
     }
 
     private void ResetLasso()
     {
+        lassoProjectile.SetActive(true);
         joint.maxDistance = lassoingDistance;
         joint.minDistance = lassoingDistance;
         projectileRB.linearVelocity = Vector3.zero;
         projectileRB.angularVelocity = Vector3.zero;
 
 
-        lassoProjectile.transform.position = lassoAnchor.position;
+        lassoPhysicalBall.transform.position = lassoAnchor.position;
         
         isThrown = false;
         ringCorrect.gameObject.SetActive(false); // maybe should do this in some function 
         ringWrong.gameObject.SetActive(true);
 
         velocityBuffer.Clear();
+
+        ropeVisual.material = neutralMaterial;
+
         Debug.Log("Lasso reset!");
     }
 
@@ -181,12 +197,14 @@ public class Lasso : MonoBehaviour
             Debug.Log("OnLassoingChanged: Lassoing");
             ringCorrect.gameObject.SetActive(true);
             ringWrong.gameObject.SetActive(false);
+            ropeVisual.material = lassoingMaterial;
         }
         else
         {
             Debug.Log("OnLassoingChanged: Not Lassoing");
             ringCorrect.gameObject.SetActive(false);
             ringWrong.gameObject.SetActive(true);
+            ropeVisual.material = notLassoingMaterial;
         }
     }
 }
