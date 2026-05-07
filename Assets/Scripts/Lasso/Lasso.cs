@@ -65,10 +65,14 @@ public class Lasso : MonoBehaviour
         joint.maxDistance = lassoingDistance;
         joint.minDistance = lassoingDistance;
 
-
+        lassoControllerInputManager.OnIndexTriggerPressed += () =>
+        {
+            ropeVisual.material = notLassoingMaterial;
+        };
         lassoControllerInputManager.OnIndexTriggerHeld += () =>
         {
             Debug.Log("Index trigger held. Wrist twisting:");
+            
             if (!isThrown && wristRotationDetection.isTwisting)
             {
                 IsLassoing = true;
