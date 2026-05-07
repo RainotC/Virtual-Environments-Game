@@ -1,11 +1,11 @@
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
     public void OnPlayButtonPressed()
     {
         Debug.Log("ADFGFDGSGFDSFDGSFDGFGDSGFDSSGDFDL");
-        // Tutaj dodasz póŸniej logikê, np. za³adowanie sceny
+        SceneManager.LoadScene("LevelDesign");
     }
 }
