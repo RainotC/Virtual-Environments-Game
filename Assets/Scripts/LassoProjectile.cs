@@ -5,11 +5,10 @@ public class LassoProjectile : MonoBehaviour
 {
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log("Lasso collided with: " + other.gameObject.name);
-        if (other.gameObject.CompareTag("Target"))
+        CowAI cow = other.gameObject.GetComponent<CowAI>();
+        if (cow != null)
         {
-            OnTargetCatch();
-            other.gameObject.GetComponent<Target>().Catch(); //propably shouldn't be called from here
+            cow.Catch();
         }
     }
     public void OnTargetCatch()

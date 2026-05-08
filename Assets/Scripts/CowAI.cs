@@ -91,4 +91,13 @@ public class CowAI : MonoBehaviour
         isMoving = true;
         isRunningAway = true;
     }
+    public void Catch()
+    {
+        Debug.Log(gameObject.name + " caught!");
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.AddPoints(1);
+        }
+        Destroy(gameObject);
+    }
 }
