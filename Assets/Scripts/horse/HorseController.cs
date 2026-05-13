@@ -2,6 +2,14 @@ using UnityEngine;
 
 public class HorseController : MonoBehaviour
 {
+    [Header("Visual Animation")]
+    public Transform horseVisual; //MACIEJ
+    public float bobSpeed = 6f; //MACIEJ
+    public float bobAmount = 0.03f; //MACIEJ
+    public float tiltAmount = 2f; //MACIEJ
+    private Vector3 visualStartPos; //MACIEJ
+    private Quaternion visualStartRot; //MACIEJ
+
     public Transform halter;
 
     public Transform playerRig;
@@ -39,6 +47,7 @@ public class HorseController : MonoBehaviour
 
     void Update()
     {
+        AnimateHorseVisual(); //MACIEJ
         if (!isReinsGrabbed || saddle.isMounted == false)
         {
             currentSpeed = Mathf.Lerp(currentSpeed, 0f, acceleration * Time.deltaTime);
@@ -56,6 +65,8 @@ public class HorseController : MonoBehaviour
     void Start()
     {
         lastHorseYaw = transform.eulerAngles.y;
+        visualStartPos = horseVisual.localPosition; //MACIEJ
+        visualStartRot = horseVisual.localRotation; //MACIEJ
     }
 
     void LateUpdate()
@@ -119,5 +130,34 @@ public class HorseController : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position + predictedDir * 2f);
+    }
+    void AnimateHorseVisual() //MACIEJ
+    {
+        if (currentSpeed < 0.1f)
+        {
+            horseVisual.localPosition = Vector3.Lerp(
+                horseVisual.localPosition,
+                visualStartPos,
+                Time.deltaTime * 5f);
+
+            horseVisual.localRotation = Quaternion.Lerp(
+                horseVisual.localRotation,
+                visualStartRot,
+                Time.deltaTime * 5f);
+
+            return;
+        }
+
+        float sin = Mathf.Sin(Time.time * bobSpeed);
+
+        Vector3 targetPos =
+            visualStartPos + Vector3.up * (sin * bobAmount);
+
+        horseVisual.localPosition = targetPos;
+
+        Quaternion targetRot =
+            visualStartRot * Quaternion.Euler(sin * tiltAmount, 0f, 0f);
+
+        horseVisual.localRotation = targetRot;
     }
 }

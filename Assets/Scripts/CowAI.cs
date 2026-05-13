@@ -96,7 +96,7 @@ public class CowAI : MonoBehaviour
         Debug.Log(gameObject.name + " caught!");
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.AddPoints(1);
+            GameManager.Instance.AddTime();
         }
         Destroy(gameObject);
     }
