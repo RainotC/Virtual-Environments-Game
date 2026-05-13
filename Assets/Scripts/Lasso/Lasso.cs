@@ -8,7 +8,7 @@ public class Lasso : MonoBehaviour
 {
 
     [SerializeField] private GameObject lassoPhysicalBall;
-    [SerializeField] private GameObject lassoProjectile;
+    [SerializeField] private GameObject lassoProjectile; //collider
     [SerializeField] private Transform lassoAnchor; //propably shouldn't use this
     [SerializeField] private InputManager lassoControllerInputManager;
 
@@ -29,6 +29,7 @@ public class Lasso : MonoBehaviour
     public Material lassoingMaterial;
     public Material notLassoingMaterial;
     public Material neutralMaterial;
+    public Material needsResetMaterial;
     public Renderer ropeVisual;
 
     private bool isThrown = false;
@@ -87,11 +88,13 @@ public class Lasso : MonoBehaviour
         {
             if (IsLassoing)
             {
+                ropeVisual.material = needsResetMaterial;
                 ThrowLasso();
                 Debug.Log("Throwing lasso!");
             }
             else if(!isThrown)
             {
+                ropeVisual.material = needsResetMaterial;
                 UnsuccessfulLasso();
             }
         };
@@ -138,9 +141,9 @@ public class Lasso : MonoBehaviour
         projectileRB.angularVelocity = Vector3.zero;
 
         Vector3 throwVelocity = GetAverageVelocity();
-        //throwVelocity.y = 0; //ignoring vertical, so it want just fall to ground 
+        throwVelocity.y = 2.0f; //ignoring vertical, so it want just fall to ground
 
-        throwVelocity.y = Mathf.Max(throwVelocity.y, throwLift);
+        //throwVelocity.y = Mathf.Max(throwVelocity.y, throwLift);
         projectileRB.linearVelocity = throwVelocity * throwForce;
         //rb.linearVelocity = lassoAnchor.forward * throwForce; //to trzeba zmieniæ na wyczytywanie wektora
 
@@ -201,14 +204,12 @@ public class Lasso : MonoBehaviour
             Debug.Log("OnLassoingChanged: Lassoing");
             ringCorrect.gameObject.SetActive(true);
             ringWrong.gameObject.SetActive(false);
-            ropeVisual.material = lassoingMaterial;
         }
         else
         {
             Debug.Log("OnLassoingChanged: Not Lassoing");
             ringCorrect.gameObject.SetActive(false);
             ringWrong.gameObject.SetActive(true);
-            ropeVisual.material = notLassoingMaterial;
         }
     }
 }
