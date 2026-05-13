@@ -52,7 +52,7 @@ public class Lasso : MonoBehaviour
 
     private Vector3 lastPos;
     Queue<Vector3> velocityBuffer = new Queue<Vector3>();
-    private int velocityBufferSize = 3;
+    private int velocityBufferSize = 10;
 
     private void Start()
     {
