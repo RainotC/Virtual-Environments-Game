@@ -8,7 +8,7 @@ public class LassoLine : MonoBehaviour
 
     [SerializeField] float thickness = 0.02f;
 
-    void Update()
+    void LateUpdate()
     {
         Vector3 start = pointA.position;
         Vector3 end = pointB.position;

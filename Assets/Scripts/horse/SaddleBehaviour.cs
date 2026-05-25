@@ -12,16 +12,21 @@ public class SaddleBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (isMounted) return;
-
-        if (OVRInput.GetDown(OVRInput.Button.Start))
+        if (isMounted)
         {
-            isMounted = true;
-            Debug.LogWarning("Unmounted");
+            ovrRig.position = mountPoint.position;
+        }
+        else //to delete
+        {
+            if (OVRInput.GetDown(OVRInput.Button.Start))
+            {
+                isMounted = true;
+                Debug.LogWarning("Unmounted");
+            }
         }
     }
 
-    public void OnGrab()
+    public void OnGrab() //to delete
     {
         ovrRig.position = mountPoint.position;
         ovrRig.rotation = mountPoint.rotation;
@@ -31,11 +36,4 @@ public class SaddleBehaviour : MonoBehaviour
 
     }
 
-    void LateUpdate()
-    {
-        if (isMounted)
-        {
-            ovrRig.position = mountPoint.position;
-        }
-    }
 }

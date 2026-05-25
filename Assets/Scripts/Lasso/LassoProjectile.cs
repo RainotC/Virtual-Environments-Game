@@ -3,17 +3,13 @@ using UnityEngine;
 
 public class LassoProjectile : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
-    {
-        CowAI cow = other.gameObject.GetComponent<CowAI>();
-        if (cow != null)
-        {
-            cow.Catch();
-        }
-    }
-    public void OnTargetCatch()
-    {
-        Debug.Log("Target caught!");
-
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    Target target = other.gameObject.GetComponent<Target>();
+    //    if (target != null)
+    //    {
+    //        target.Catch();
+    //        Debug.Log("Target caught!");
+    //    }
+    //}
 }

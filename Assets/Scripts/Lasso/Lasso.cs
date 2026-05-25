@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using TMPro;
@@ -22,8 +23,9 @@ public class Lasso : MonoBehaviour
     public float unsucessfullThrowRopeLength = 1f;
     public float throwLift = 1.5f; //does it work?
     public float ropeLength = 0.5f;
-    public float throwForce = 1.5f;
+    public float throwForce = 1f;
     public float unsuccessfulThrowForce = 0.5f;
+    public float speed = 1f;
 
     [Header("Rope colors")]
     public Material lassoingMaterial;
@@ -35,7 +37,6 @@ public class Lasso : MonoBehaviour
     private bool isThrown = false;
     private Rigidbody projectileRB;
     private SpringJoint joint;
-
     public bool IsLassoing
     {
         get { return isLassoing; }
@@ -53,7 +54,7 @@ public class Lasso : MonoBehaviour
 
     private Vector3 lastPos;
     Queue<Vector3> velocityBuffer = new Queue<Vector3>();
-    private int velocityBufferSize = 10;
+    private int velocityBufferSize = 9;//maybe we should also take some after throw?????
 
     private void Start()
     {
@@ -105,6 +106,8 @@ public class Lasso : MonoBehaviour
                 ResetLasso();
             }
         };
+        projectileRB.linearVelocity = Vector3.zero;
+        projectileRB.angularVelocity = Vector3.zero;
 
     }
 
@@ -128,27 +131,28 @@ public class Lasso : MonoBehaviour
 
     private void ThrowLasso()
     {
+        bool hitTarget = RaycastHitTarget();
+        if (!hitTarget)
+        {
+            Vector3 currentPos = lassoAnchor.position;
+            Vector3 velocity = (currentPos - lastPos) / Time.deltaTime;
 
-        lassoProjectile.SetActive(true);
-        Vector3 currentPos = lassoAnchor.position;
-        Vector3 velocity = (currentPos - lastPos) / Time.deltaTime;
+            isThrown = true;
+            IsLassoing = false;
+            joint.maxDistance = succesfullThrowRopeLength;
+            joint.minDistance = succesfullThrowRopeLength;
+            projectileRB.linearVelocity = Vector3.zero;
+            projectileRB.angularVelocity = Vector3.zero;
 
-        isThrown = true;
-        IsLassoing = false;
-        joint.maxDistance = succesfullThrowRopeLength;
-        joint.minDistance = succesfullThrowRopeLength;
-        projectileRB.linearVelocity = Vector3.zero;
-        projectileRB.angularVelocity = Vector3.zero;
+            Vector3 throwVelocity = GetAverageVelocity();
+            throwVelocity.y = 5.0f; //ignoring vertical, so it want just fall to ground
 
-        Vector3 throwVelocity = GetAverageVelocity();
-        throwVelocity.y = 2.0f; //ignoring vertical, so it want just fall to ground
+            //throwVelocity.y = Mathf.Max(throwVelocity.y, throwLift);
+            projectileRB.linearVelocity = throwVelocity * throwForce;
+            //rb.linearVelocity = lassoAnchor.forward * throwForce; //to trzeba zmieniæ na wyczytywanie wektora
 
-        //throwVelocity.y = Mathf.Max(throwVelocity.y, throwLift);
-        projectileRB.linearVelocity = throwVelocity * throwForce;
-        //rb.linearVelocity = lassoAnchor.forward * throwForce; //to trzeba zmieniæ na wyczytywanie wektora
-
-        Debug.Log("Lasso thrown!");
-
+            Debug.Log("Lasso thrown!");
+        }
     }
 
     private void UnsuccessfulLasso()
@@ -164,7 +168,7 @@ public class Lasso : MonoBehaviour
 
     private void ResetLasso()
     {
-        lassoProjectile.SetActive(true);
+        lassoProjectile.transform.SetParent(lassoPhysicalBall.transform, false);
         joint.maxDistance = lassoingDistance;
         joint.minDistance = lassoingDistance;
         projectileRB.linearVelocity = Vector3.zero;
@@ -172,7 +176,8 @@ public class Lasso : MonoBehaviour
 
 
         lassoPhysicalBall.transform.position = lassoAnchor.position;
-        
+        lassoProjectile.transform.localPosition = Vector3.zero;
+
         isThrown = false;
         ringCorrect.gameObject.SetActive(false); // maybe should do this in some function 
         ringWrong.gameObject.SetActive(true);
@@ -180,7 +185,7 @@ public class Lasso : MonoBehaviour
         velocityBuffer.Clear();
 
         ropeVisual.material = neutralMaterial;
-
+        //joint.connectedBody = lassoAnchor;
         Debug.Log("Lasso reset!");
     }
 
@@ -211,5 +216,43 @@ public class Lasso : MonoBehaviour
             ringCorrect.gameObject.SetActive(false);
             ringWrong.gameObject.SetActive(true);
         }
+    }
+
+
+    private bool RaycastHitTarget()
+    {
+        Vector3 velocity = GetAverageVelocity();
+        Vector3 flatVelocity = new Vector3(velocity.x, 0f, velocity.z);
+
+        Ray ray = new Ray(lassoAnchor.transform.position, flatVelocity.normalized);
+        Debug.DrawRay(ray.origin, ray.direction * (succesfullThrowRopeLength+5), Color.red, 2f);
+        Debug.Log("Raycasting with velocity: " + flatVelocity.magnitude);
+        if (Physics.Raycast(ray, out RaycastHit hit, succesfullThrowRopeLength+5, layerMask: LayerMask.GetMask("Target")))
+        {
+            Debug.Log("Trafiono w: " + hit.collider.name);
+            GameObject caughtObj = hit.collider.gameObject;
+            StartCoroutine(MoveToPoint(caughtObj.transform.position, caughtObj));
+            return true;
+        }
+        return false;
+    }
+
+
+    IEnumerator MoveToPoint(Vector3 target, GameObject obj)
+    {
+        lassoProjectile.transform.SetParent(null);
+        while (Vector3.Distance(lassoProjectile.transform.position, target) > 0.05f)
+        {
+            lassoProjectile.transform.position = Vector3.MoveTowards(
+                lassoProjectile.transform.position,
+                target,
+                speed * Time.deltaTime
+            );
+
+            yield return null;
+        }
+
+        lassoProjectile.transform.position = target;
+        obj.GetComponent<Target>().Catch();
     }
 }

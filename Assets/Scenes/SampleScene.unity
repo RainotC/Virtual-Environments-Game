@@ -2008,22 +2008,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lasso
       objectReference: {fileID: 0}
-    - target: {fileID: 1274185914827489321, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1274185914827489321, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4339311647048105155, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
       propertyPath: lassoAnchor
       value: 
       objectReference: {fileID: 608814396}
-    - target: {fileID: 4339311647048105155, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
-      propertyPath: needsResetMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 61ab99260744e9b48aaec53290492251, type: 2}
     - target: {fileID: 4339311647048105155, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
       propertyPath: lassoControllerInputManager
       value: 
@@ -2035,7 +2023,7 @@ PrefabInstance:
     - target: {fileID: 6870606518683809630, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
       propertyPath: centerEyeAnchor
       value: 
-      objectReference: {fileID: 286952868}
+      objectReference: {fileID: 984014486}
     - target: {fileID: 8821289160169583144, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
       propertyPath: m_ConnectedBody
       value: 

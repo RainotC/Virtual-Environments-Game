@@ -12,9 +12,9 @@ public class AutoMountHorse : MonoBehaviour
 
     private bool hasMounted = false;
 
-    void Start()
+    void OnEnable()
     {
-        Invoke("MountPlayer", 0.1f);
+        MountPlayer();
     }
 
     void MountPlayer()
