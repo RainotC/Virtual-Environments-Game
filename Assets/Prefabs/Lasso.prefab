@@ -63,7 +63,7 @@ Transform:
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8489632558546408556}
+  - {fileID: 4366090208553138441}
   m_Father: {fileID: 1881407349259595182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2633283764116105022
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   pointA: {fileID: 0}
-  pointB: {fileID: 5791086077374250901}
+  pointB: {fileID: 4366090208553138441}
   thickness: 0.02
 --- !u!1 &2986843137793213346
 GameObject:
@@ -345,13 +345,45 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6916723806455147947}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.233, y: 0, z: 0.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9212861480801466702}
   - {fileID: 6612973512450721412}
+  m_Father: {fileID: 4366090208553138441}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7852177412711770978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4366090208553138441}
+  m_Layer: 0
+  m_Name: LassoRIngConnectionPointChild
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4366090208553138441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7852177412711770978}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8489632558546408556}
   m_Father: {fileID: 5791086077374250901}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5439787946693674985
@@ -411,6 +443,10 @@ PrefabInstance:
       value: LassoManager
       objectReference: {fileID: 0}
     - target: {fileID: 8594652197837650730, guid: 8731a83998b0f5344954f842a763708b, type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8594652197837650730, guid: 8731a83998b0f5344954f842a763708b, type: 3}
       propertyPath: ringWrong
       value: 
       objectReference: {fileID: 6612973512450721412}
@@ -429,7 +465,7 @@ PrefabInstance:
     - target: {fileID: 8594652197837650730, guid: 8731a83998b0f5344954f842a763708b, type: 3}
       propertyPath: lassoProjectile
       value: 
-      objectReference: {fileID: 2986843137793213346}
+      objectReference: {fileID: 7852177412711770978}
     - target: {fileID: 8594652197837650730, guid: 8731a83998b0f5344954f842a763708b, type: 3}
       propertyPath: neutralMaterial
       value: 
@@ -450,6 +486,10 @@ PrefabInstance:
       propertyPath: notLassoingMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 61ab99260744e9b48aaec53290492251, type: 2}
+    - target: {fileID: 8594652197837650730, guid: 8731a83998b0f5344954f842a763708b, type: 3}
+      propertyPath: lassoProjectileParent
+      value: 
+      objectReference: {fileID: 1482351023960993070}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -487,6 +527,10 @@ PrefabInstance:
     - target: {fileID: 1683474101398501978, guid: 326a96637606eca41b6ffd6ce92446d8, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921300210337350979, guid: 326a96637606eca41b6ffd6ce92446d8, type: 3}
+      propertyPath: m_MaxDistance
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2921300210337350979, guid: 326a96637606eca41b6ffd6ce92446d8, type: 3}
       propertyPath: m_AutoConfigureConnectedAnchor

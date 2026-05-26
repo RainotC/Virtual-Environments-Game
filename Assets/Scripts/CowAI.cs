@@ -92,4 +92,5 @@ public class CowAI : MonoBehaviour
         isRunningAway = true;
     }
    
+
 }

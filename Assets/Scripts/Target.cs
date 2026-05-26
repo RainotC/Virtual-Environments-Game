@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
+    public GameObject target;
     public void Catch()
     {
         Debug.Log(gameObject.name + " caught!");
@@ -9,6 +10,6 @@ public class Target : MonoBehaviour
         {
             GameManager.Instance.AddTime();
         }
-        Destroy(gameObject);
+        Destroy(target);
     }
 }

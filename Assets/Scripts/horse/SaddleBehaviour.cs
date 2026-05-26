@@ -8,7 +8,6 @@ public class SaddleBehaviour : MonoBehaviour
     public Behaviour locomotor;
 
     public bool isMounted = false;
-    public Transform mountingPoint;
 
     void Update()
     {
