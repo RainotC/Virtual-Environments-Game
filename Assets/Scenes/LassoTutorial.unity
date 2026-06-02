@@ -8168,13 +8168,33 @@ PrefabInstance:
       value: Lasso
       objectReference: {fileID: 0}
     - target: {fileID: 4339311647048105155, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
+      propertyPath: throwLift
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339311647048105155, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
+      propertyPath: ropeLength
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339311647048105155, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
+      propertyPath: throwForce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339311647048105155, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
       propertyPath: lassoAnchor
       value: 
       objectReference: {fileID: 1874838506}
     - target: {fileID: 4339311647048105155, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
+      propertyPath: succesfullThrowRopeLength
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339311647048105155, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
       propertyPath: lassoControllerInputManager
       value: 
       objectReference: {fileID: 1314718916}
+    - target: {fileID: 5065348356947015809, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
+      propertyPath: m_AngularDamping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6870606518683809630, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
       propertyPath: controller
       value: 
@@ -8183,6 +8203,10 @@ PrefabInstance:
       propertyPath: centerEyeAnchor
       value: 
       objectReference: {fileID: 902554699}
+    - target: {fileID: 8821289160169583144, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
+      propertyPath: m_Spring
+      value: 5000
+      objectReference: {fileID: 0}
     - target: {fileID: 8821289160169583144, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
       propertyPath: m_ConnectedBody
       value: 

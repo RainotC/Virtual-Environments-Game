@@ -15,7 +15,7 @@ public class CowAI : MonoBehaviour
     private float waitTime;
     private Transform playerTransform;
     private Rigidbody rb;
-
+    private bool stopped = false;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -29,6 +29,7 @@ public class CowAI : MonoBehaviour
 
     void Update()
     {
+        if (stopped) return;
         if (playerTransform != null)
         {
             float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
@@ -92,5 +93,8 @@ public class CowAI : MonoBehaviour
         isRunningAway = true;
     }
    
-
+    public void StopCow()
+    {
+        stopped = true;
+    }
 }
