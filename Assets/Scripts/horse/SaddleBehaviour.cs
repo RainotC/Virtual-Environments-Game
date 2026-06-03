@@ -9,6 +9,14 @@ public class SaddleBehaviour : MonoBehaviour
 
     public bool isMounted = false;
 
+    private void Start()
+    {
+        if (isMounted)
+        {
+            ovrRig.position = mountPoint.position;
+        }
+    }
+
     void Update()
     {
         if (isMounted)

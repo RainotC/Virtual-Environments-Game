@@ -10,8 +10,8 @@ public class Lasso : MonoBehaviour
 {
 
     [SerializeField] private GameObject lassoPhysicalBall;
-    [SerializeField] private GameObject lassoProjectile; //shit you throw, with 000 transform
-    [SerializeField] private Transform lassoAnchor; //propably shouldn't use this
+    [SerializeField] private GameObject lassoProjectile; //thing you throw, with 000 transform
+    [SerializeField] private Transform lassoAnchor; 
     [SerializeField] private GameObject lassoProjectileParent;
     [SerializeField] private InputManager lassoControllerInputManager;
 
@@ -19,16 +19,15 @@ public class Lasso : MonoBehaviour
     [SerializeField] private Transform ringCorrect;
     [SerializeField] private Transform ringWrong;
 
-    [Header("Throw settings")]
+    [Header("Throw settings")] //need cleanup
     public float lassoingDistance = 0.5f;
     public float succesfullThrowRopeLength = 2.5f;
     public float unsucessfullThrowRopeLength = 1f;
-    public float throwLift = 1.5f; //does it work?
+    public float throwLift = 1.5f; 
     public float ropeLength = 0.5f;
     public float throwForce = 1f;
     public float unsuccessfulThrowForce = 0.5f;
     public float throwSpeed = 3f;
-    private AnimationCurve throwCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
     [Header("Rope colors")]
     public Material lassoingMaterial;
@@ -40,6 +39,12 @@ public class Lasso : MonoBehaviour
     private bool isThrown = false;
     private Rigidbody ballRB;
     private SpringJoint joint;
+    public void OnEnable()
+    {
+        ballRB = GetComponent<Rigidbody>();
+        ballRB.linearVelocity = Vector3.zero;
+        ballRB.angularVelocity = Vector3.zero;
+    }
     public bool IsLassoing
     {
         get { return isLassoing; }
@@ -54,16 +59,18 @@ public class Lasso : MonoBehaviour
     }
     private bool isLassoing = false;
     private WristRotationDetection wristRotationDetection;
+    private HandRotationDetection handRotationDetection;
     private bool canReset = false;
 
     private Vector3 lastPos;
     Queue<Vector3> velocityBuffer = new Queue<Vector3>();
-    private int velocityBufferSize = 9;//maybe we should also take some after throw?????
+    private int velocityBufferSize = 9;
 
     private void Start()
     {
         lastPos = lassoAnchor.position;
         wristRotationDetection = GetComponent<WristRotationDetection>();
+        handRotationDetection = GetComponent<HandRotationDetection>();
 
         ballRB = lassoPhysicalBall.GetComponent<Rigidbody>();
         if (ballRB == null)
@@ -87,8 +94,9 @@ public class Lasso : MonoBehaviour
         lassoControllerInputManager.OnIndexTriggerHeld += () =>
         {
             Debug.Log("Index trigger held. Wrist twisting:");
-            
-            if (!isThrown && wristRotationDetection.isTwisting)
+            Debug.Log("IsThrown: " + isThrown + ", Hand: " + handRotationDetection.isTwisting);
+
+            if (!isThrown && handRotationDetection.isTwisting)
             {
                 IsLassoing = true;
                 Debug.Log("Started lassoing!");
@@ -209,7 +217,6 @@ public class Lasso : MonoBehaviour
         velocityBuffer.Clear();
 
         ropeVisual.material = neutralMaterial;
-        //joint.connectedBody = lassoAnchor;
         Debug.Log("Lasso reset!");
         canReset = false;
     }
@@ -264,7 +271,7 @@ public class Lasso : MonoBehaviour
         }
         else
         {
-            Vector3 fallbackPoint = ray.origin + dir * (succesfullThrowRopeLength-0.5f); // idk czy to 0.5 coś da pozytywnego
+            Vector3 fallbackPoint = ray.origin + dir * (succesfullThrowRopeLength-0.5f); // idk if 0.5 really changes it enough
             fallbackPoint.y = 0;
             Debug.Log("Nie trafiono, używam punktu fallback: " + fallbackPoint);
 
@@ -289,42 +296,7 @@ public class Lasso : MonoBehaviour
             targetObject.GetComponent<Target>().Catch();
         }
         canReset = true;
+        ResetLasso();
     }
 
-
-    //IEnumerator MoveToTargetPoint(Vector3 targetPoint, GameObject obj)
-    //{
-
-    //    while (Vector3.Distance(lassoProjectile.transform.position, obj.transform.position) > 0.1f)
-    //    {
-    //        // Make the target kinematic to prevent physics interference
-    //        lassoProjectile.transform.position = Vector3.MoveTowards(
-    //            lassoProjectile.transform.position,
-    //            obj.transform.position,
-    //            speed * Time.deltaTime
-    //        );
-
-    //        yield return null;
-    //    }
-
-    //    obj.GetComponent<Target>().Catch();
-    //    canReset = true;
-    //}
-
-    //IEnumerator MoveToPoint(Vector3 targetPoint)
-    //{
-
-    //    while (Vector3.Distance(lassoProjectile.transform.position, targetPoint) > 0.1f)
-    //    {
-    //        lassoProjectile.transform.position = Vector3.MoveTowards(
-    //            lassoProjectile.transform.position,
-    //            targetPoint,
-    //            speed * Time.deltaTime
-    //        );
-
-    //        yield return null;
-    //    }
-
-    //    canReset = true;
-    //}
 }

@@ -1131,7 +1131,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2648705649262390907, guid: a3eabb630328b4b438f049f9c53aeff1, type: 3}
       propertyPath: maxSpeed
-      value: 9
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2648705649262390907, guid: a3eabb630328b4b438f049f9c53aeff1, type: 3}
       propertyPath: playerRig
@@ -2388,9 +2388,17 @@ PrefabInstance:
       value: Lasso
       objectReference: {fileID: 0}
     - target: {fileID: 4339311647048105155, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
+      propertyPath: throwSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339311647048105155, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
       propertyPath: lassoAnchor
       value: 
       objectReference: {fileID: 1874838506}
+    - target: {fileID: 4339311647048105155, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
+      propertyPath: succesfullThrowRopeLength
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4339311647048105155, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
       propertyPath: lassoControllerInputManager
       value: 
@@ -2450,7 +2458,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4186141007132499274, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2032073972}
   m_SourcePrefab: {fileID: 100100000, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
 --- !u!1001 &599838810
 PrefabInstance:
@@ -4645,6 +4656,11 @@ Transform:
   - {fileID: 2037448750}
   m_Father: {fileID: 1950522435}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &983040550 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 5065348356947015809, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
+  m_PrefabInstance: {fileID: 560356957}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &991214107
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9241,6 +9257,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 8.250803, y: 1.0172825, z: 0.22841758}
   m_Center: {x: 0.06328678, y: 0.3663884, z: -0.025205553}
+--- !u!1 &2032073968 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4186141007132499274, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
+  m_PrefabInstance: {fileID: 560356957}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2032073972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032073968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4798ec140037d4b4899ee51d308e6f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandRotationDetection
+  controller: {fileID: 973239963}
+  centerEyeAnchor: {fileID: 902554699}
+  ballRB: {fileID: 983040550}
+  gracePeriod: 0.3
+  maxIdleTime: 0.2
 --- !u!1 &2034507653
 GameObject:
   m_ObjectHideFlags: 0

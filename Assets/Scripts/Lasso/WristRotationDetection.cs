@@ -12,7 +12,7 @@ public class WristRotationDetection : MonoBehaviour
     [Header("Settings")]
     public float minAngularVelocity = 80f;
     public float requiredAngle = 360f;
-    public float axisThreshold = 0.7f; // jak bardzo musi by? "w osi"
+    public float axisThreshold = 0.7f; // jak bardzo musi byc "w osi"
     public float maxIdleTime = 0.2f;
 
     private Quaternion lastRotation;
