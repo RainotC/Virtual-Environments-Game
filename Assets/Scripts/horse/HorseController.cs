@@ -35,6 +35,8 @@ public class HorseController : MonoBehaviour
 
     public bool isReinsGrabbed = false;
 
+    private Rigidbody rb;
+
     public void OnGrab()
     {
         isReinsGrabbed = true;
@@ -59,7 +61,7 @@ public class HorseController : MonoBehaviour
             HandleTurning();
         }
 
-        MoveHorse();
+        MoveHorsePhysics();
     }
 
     void Start()
@@ -67,6 +69,7 @@ public class HorseController : MonoBehaviour
         lastHorseYaw = transform.eulerAngles.y;
         visualStartPos = horseVisual.localPosition; //MACIEJ
         visualStartRot = horseVisual.localRotation; //MACIEJ
+        rb = GetComponent<Rigidbody>();
     }
 
     void LateUpdate()
@@ -105,16 +108,23 @@ public class HorseController : MonoBehaviour
         if (Mathf.Abs(xInput) < deadZone)
             xInput = 0f;
 
-        float targetTurnRate = (xInput / maxSideInput) * maxTurnRate;
+        float input01 = xInput / maxSideInput;
 
-        currentTurnRate = Mathf.Lerp(currentTurnRate, targetTurnRate, turnSmoothness * Time.deltaTime);
+        float speed01 = Mathf.Clamp01(currentSpeed / maxSpeed);
+        float slowFactor = Mathf.Pow(1f - speed01, 1.5f);
+
+        float targetTurnRate =
+            input01 * maxTurnRate * slowFactor;
+
+        currentTurnRate = Mathf.Lerp(
+            currentTurnRate,
+            targetTurnRate,
+            turnSmoothness * Time.deltaTime
+        );
+
     }
 
-    void MoveHorse()
-    {
-        transform.position += transform.forward * currentSpeed * Time.deltaTime;
-        transform.Rotate(0f, currentTurnRate * Time.deltaTime, 0f);
-    }
+  
 
     void OnDrawGizmos()
     {
@@ -147,6 +157,7 @@ public class HorseController : MonoBehaviour
 
             return;
         }
+        float lean =-currentTurnRate * 0.03f;
 
         float sin = Mathf.Sin(Time.time * bobSpeed);
 
@@ -155,9 +166,26 @@ public class HorseController : MonoBehaviour
 
         horseVisual.localPosition = targetPos;
 
-        Quaternion targetRot =
-            visualStartRot * Quaternion.Euler(sin * tiltAmount, 0f, 0f);
+        Quaternion targetRot = visualStartRot * Quaternion.Euler(sin * tiltAmount, 0f,
+ lean);
 
         horseVisual.localRotation = targetRot;
     }
+
+    void MoveHorsePhysics()
+    {
+        Vector3 targetVelocity = transform.forward * currentSpeed;
+        Vector3 velocityChange = targetVelocity - rb.linearVelocity;
+        velocityChange.y = 0f;
+
+        rb.AddForce(velocityChange, ForceMode.VelocityChange);
+        float speedFactor = Mathf.Clamp01(rb.linearVelocity.magnitude / maxSpeed);
+
+        float actualTurn = currentTurnRate * speedFactor;
+
+        Quaternion deltaRotation = Quaternion.Euler(0f, actualTurn * Time.fixedDeltaTime, 0f);
+
+        rb.MoveRotation(rb.rotation * deltaRotation);
+    }
+
 }

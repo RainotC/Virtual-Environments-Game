@@ -168,6 +168,10 @@ PrefabInstance:
       propertyPath: playerRig
       value: 
       objectReference: {fileID: 1995352741}
+    - target: {fileID: 2648705649262390907, guid: a3eabb630328b4b438f049f9c53aeff1, type: 3}
+      propertyPath: horseVisual
+      value: 
+      objectReference: {fileID: 1807789306}
     - target: {fileID: 4249182407274769529, guid: a3eabb630328b4b438f049f9c53aeff1, type: 3}
       propertyPath: m_Name
       value: Horse
@@ -1609,6 +1613,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 567538777}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1807789306 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9019525418734340559, guid: a3eabb630328b4b438f049f9c53aeff1, type: 3}
+  m_PrefabInstance: {fileID: 126370682}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1995352736
 GameObject:
   m_ObjectHideFlags: 0
