@@ -6,16 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/MainMenu.unity
+    guid: 7f9b324b5421386499e29b1792c339fd
   - enabled: 1
     path: Assets/Scenes/LevelDesign.unity
     guid: 93a2c159f3b7c1c48ac0305fbd2ef91d
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 7f9b324b5421386499e29b1792c339fd
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: fc43aef130721a140a89589f7ca0212e, type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 9d2032ab3fa41f4409334f06baba3898, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 3a3592c9abd835a42861b93eff5bf6d4, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 01db54cade300364abf5915a4b27b9d0, type: 2}
