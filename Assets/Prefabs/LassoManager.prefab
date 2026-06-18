@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4297401701569810214}
   - component: {fileID: 8594652197837650730}
   - component: {fileID: 1452215626075566263}
+  - component: {fileID: 2126105755532187781}
   m_Layer: 0
   m_Name: LassoManager
   m_TagString: Untagged
@@ -47,16 +48,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Lasso
   lassoPhysicalBall: {fileID: 0}
   lassoProjectile: {fileID: 0}
-  lassoRingMeshCollider: {fileID: 0}
   lassoAnchor: {fileID: 0}
+  lassoProjectileParent: {fileID: 0}
   lassoControllerInputManager: {fileID: 0}
-  ringCorrect: {fileID: 0}
-  ringWrong: {fileID: 0}
+  ringLassoing: {fileID: 0}
+  ringUp: {fileID: 0}
+  ringDown: {fileID: 0}
   lassoingDistance: 0.5
-  thrownDistance: 2
-  throwLift: 1.5
-  ropeLength: 0.5
-  throwForce: 2
+  succesfullThrowRopeLength: 2.5
+  unsucessfullThrowRopeLength: 1
+  throwSpeed: 3
 --- !u!114 &1452215626075566263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,3 +77,20 @@ MonoBehaviour:
   requiredAngle: 90
   axisThreshold: 0.7
   maxIdleTime: 0.3
+--- !u!114 &2126105755532187781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8171266135941241507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4798ec140037d4b4899ee51d308e6f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandRotationDetection
+  controller: {fileID: 0}
+  centerEyeAnchor: {fileID: 0}
+  ballRB: {fileID: 0}
+  gracePeriod: 0.3
+  maxIdleTime: 0.2
