@@ -17,7 +17,7 @@ public class SaddleBehaviour : MonoBehaviour
         }
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (isMounted)
         {
