@@ -3422,6 +3422,26 @@ PrefabInstance:
       propertyPath: lassoControllerInputManager
       value: 
       objectReference: {fileID: 1314718916}
+    - target: {fileID: 4368224533634847571, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 973239963}
+    - target: {fileID: 4368224533634847571, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
+      propertyPath: centerEyeAnchor
+      value: 
+      objectReference: {fileID: 902554699}
+    - target: {fileID: 6268856455219650412, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
+      propertyPath: ballRB
+      value: 
+      objectReference: {fileID: 983040550}
+    - target: {fileID: 6268856455219650412, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 973239963}
+    - target: {fileID: 6268856455219650412, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
+      propertyPath: centerEyeAnchor
+      value: 
+      objectReference: {fileID: 902554699}
     - target: {fileID: 6870606518683809630, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
       propertyPath: controller
       value: 
@@ -3474,13 +3494,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6268856455219650412, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4186141007132499274, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2032073972}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
 --- !u!1001 &561186544
 PrefabInstance:
@@ -13641,28 +13659,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 8.250803, y: 1.0172825, z: 0.22841758}
   m_Center: {x: 0.06328678, y: 0.3663884, z: -0.025205553}
---- !u!1 &2032073968 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4186141007132499274, guid: 21f9f08cdd96e754f8bf93ac54c67669, type: 3}
-  m_PrefabInstance: {fileID: 560356957}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2032073972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2032073968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4798ec140037d4b4899ee51d308e6f10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HandRotationDetection
-  controller: {fileID: 973239963}
-  centerEyeAnchor: {fileID: 902554699}
-  ballRB: {fileID: 983040550}
-  gracePeriod: 0.3
-  maxIdleTime: 0.2
 --- !u!1 &2034507653
 GameObject:
   m_ObjectHideFlags: 0
