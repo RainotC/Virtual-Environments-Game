@@ -16,6 +16,15 @@ public class SaddleBehaviour : MonoBehaviour
             ovrRig.position = mountPoint.position;
         }
     }
+    private void Update()
+    
+    {
+        if (isMounted)
+        {
+            ovrRig.position = mountPoint.position;
+        }
+    }
+
 
     void LateUpdate()
     {

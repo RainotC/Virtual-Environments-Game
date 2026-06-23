@@ -21,7 +21,8 @@ public class LassoLine : MonoBehaviour
         float distance = dir.magnitude;
 
         // Rotate Y-axis cylinder to point at target
-        transform.rotation = Quaternion.LookRotation(dir) * Quaternion.Euler(90, 0, 0);
+        Quaternion rot = Quaternion.LookRotation(dir, Vector3.up);
+        transform.rotation = rot * Quaternion.Euler(90, 0, 0);
 
         // Scale: Y is length for cylinder
         transform.localScale = new Vector3(thickness, distance / 2f, thickness);
