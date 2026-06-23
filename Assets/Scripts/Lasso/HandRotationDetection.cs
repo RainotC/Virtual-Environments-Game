@@ -36,7 +36,7 @@ class HandRotationDetection : MonoBehaviour
         Vector3 velocity = ballRB.linearVelocity;
 
         Debug.LogWarning("Velocity: " + velocity.magnitude);
-        if (velocity.magnitude < 0.4f)
+        if (velocity.magnitude < 2.0f)
         {
             idleTimer += Time.deltaTime;
             if (idleTimer > maxIdleTime)

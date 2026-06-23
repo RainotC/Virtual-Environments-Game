@@ -8,7 +8,12 @@ public class Target : MonoBehaviour
         Debug.Log(gameObject.name + " caught!");
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.AddTime();
+            CowAI cowAi = target.GetComponent<CowAI>();
+            if (cowAi != null)
+            {
+                GameManager.Instance.AddPoint(cowAi.pointsToAdd);
+            }
+            
         }
         Destroy(target);
     }

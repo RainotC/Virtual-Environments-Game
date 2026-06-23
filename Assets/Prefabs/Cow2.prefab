@@ -140,8 +140,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CowAI
   moveSpeed: 1
   runSpeed: 2.5
-  minWaitTime: 5
-  maxWaitTime: 10
+  minWaitTime: 3
+  maxWaitTime: 5
   moveRadius: 10
   scareDistance: 3
 --- !u!54 &3761920631322788518

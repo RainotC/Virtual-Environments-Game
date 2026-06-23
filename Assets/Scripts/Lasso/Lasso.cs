@@ -174,7 +174,11 @@ public class Lasso : MonoBehaviour
         }
         else
         {
-            Vector3 fallbackPoint = ray.origin + dir * (successfulThrowRopeLength);
+            float speed = flatVelocity.magnitude;
+
+            float throwDistance = Mathf.Min(speed, successfulThrowRopeLength);
+
+            Vector3 fallbackPoint = ray.origin + dir * throwDistance;
             fallbackPoint.y = 0;
             StartCoroutine(MoveToPoint(fallbackPoint));
         }

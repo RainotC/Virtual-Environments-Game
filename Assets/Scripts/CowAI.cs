@@ -8,6 +8,8 @@ public class CowAI : MonoBehaviour
     public float maxWaitTime = 5f;
     public float moveRadius = 10f;
     public float scareDistance = 5f;
+    public int pointsToAdd = 1;
+
 
     private Vector3 targetPosition;
     private bool isMoving = false;

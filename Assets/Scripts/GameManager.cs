@@ -10,9 +10,12 @@ public class GameManager : MonoBehaviour
     public float startTime = 60f;          // startowy czas w sekundach
     public float timeToAdd = 10f;           // ile sekund dodaje krowa
     public TextMeshProUGUI timerText;       // UI do wyœwietlania czasu
+    public TextMeshProUGUI scoreText;       // UI do wyœwietlania wyniku
 
     private float currentTime;
     private bool isGameOver = false;
+    private int score = 0; // Zmienna do przechowywania wyniku
+
 
     void Awake()
     {
@@ -29,8 +32,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        score = 0;
         currentTime = startTime;
         UpdateTimerUI();
+        UpdateScoreUI();
     }
 
     void Update()
@@ -38,14 +43,13 @@ public class GameManager : MonoBehaviour
         if (isGameOver) return;
 
         currentTime -= Time.deltaTime;
+        UpdateTimerUI();
 
         if (currentTime <= 0f)
         {
             currentTime = 0f;
             GameOver();
         }
-
-        UpdateTimerUI();
     }
 
     void UpdateTimerUI()
@@ -55,7 +59,7 @@ public class GameManager : MonoBehaviour
             // Wyœwietl czas w formacie mm:ss lub sekundy
             int minutes = Mathf.FloorToInt(currentTime / 60f);
             int seconds = Mathf.FloorToInt(currentTime % 60f);
-            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            timerText.text = string.Format("Time left: {0:00}:{1:00}", minutes, seconds);
         }
     }
 
@@ -64,13 +68,29 @@ public class GameManager : MonoBehaviour
     {
         if (isGameOver) return;
         currentTime += timeToAdd;
-        Debug.Log($"Dodano {timeToAdd} sekund! Aktualny czas: {currentTime:F1}");
         UpdateTimerUI();
     }
 
+
+    public void AddPoint(int point)
+    {
+        if (isGameOver) return;
+        score += point;
+        UpdateScoreUI();
+    }
+
+    private void UpdateScoreUI()
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = $"Score: {score}";
+        }
+    }
     private void GameOver()
     {
         isGameOver = true;
+        timerText.text = "Game over!";
+        
         Debug.Log("KONIEC CZASU – GAME OVER");
         // Tutaj mo¿esz dodaæ: zatrzymanie gry, ³adowanie ekranu koñca itp.
         // np. SceneManager.LoadScene("GameOverScene");
