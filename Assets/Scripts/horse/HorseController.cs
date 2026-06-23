@@ -35,6 +35,12 @@ public class HorseController : MonoBehaviour
 
     public bool isReinsGrabbed = false;
 
+    [Header("World bounds")]
+    public Transform corner1;
+    public Transform corner2;
+
+
+
     public void OnGrab()
     {
         isReinsGrabbed = true;
@@ -112,8 +118,13 @@ public class HorseController : MonoBehaviour
 
     void MoveHorse()
     {
-        transform.position += transform.forward * currentSpeed * Time.deltaTime;
+        Vector3 newPosition = transform.position + transform.forward * currentSpeed * Time.deltaTime;
         transform.Rotate(0f, currentTurnRate * Time.deltaTime, 0f);
+        if (IsOutsideBounds(newPosition))
+        {
+            return;
+        }
+        transform.position = newPosition;
     }
 
     void OnDrawGizmos()
@@ -160,4 +171,17 @@ public class HorseController : MonoBehaviour
 
         horseVisual.localRotation = targetRot;
     }
+    public bool IsOutsideBounds(Vector3 target)
+    {
+        Vector3 min = Vector3.Min(corner1.position, corner2.position);
+        Vector3 max = Vector3.Max(corner1.position, corner2.position);
+
+        Vector3 pos = target;
+
+        return pos.x < min.x ||
+               pos.x > max.x ||
+               pos.z < min.z ||
+               pos.z > max.z;
+    }
+
 }
