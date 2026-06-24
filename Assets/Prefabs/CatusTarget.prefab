@@ -40,6 +40,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1581428804983334834}
+    - target: {fileID: 1009448253893009082, guid: ecd29f2a9381eca4b9d13abc23f154c7, type: 3}
+      propertyPath: hitSmokePrefab
+      value: 
+      objectReference: {fileID: 141433446842962269, guid: 9fe8f8b3288e45a44af36ff8aa04486e, type: 3}
     - target: {fileID: 1009467938468534940, guid: ecd29f2a9381eca4b9d13abc23f154c7, type: 3}
       propertyPath: m_Name
       value: Target

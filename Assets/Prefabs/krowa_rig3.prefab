@@ -534,7 +534,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e320236911f184da1823860870f8c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Target
-  target: {fileID: 1231750074389359910}
+  target: {fileID: 2457455395283002901}
+  hitSmokePrefab: {fileID: 141433446842962269, guid: 9fe8f8b3288e45a44af36ff8aa04486e, type: 3}
 --- !u!1 &4341093396483270414
 GameObject:
   m_ObjectHideFlags: 0
