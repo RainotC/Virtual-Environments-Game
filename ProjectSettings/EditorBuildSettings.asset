@@ -11,8 +11,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelDesign.unity
     guid: 93a2c159f3b7c1c48ac0305fbd2ef91d
+  - enabled: 1
+    path: Assets/Scenes/LassoTutorial.unity
+    guid: df88a2053bf16df41a6e34b14ac55d49
+  - enabled: 1
+    path: Assets/Scenes/LassoTutorial2.unity
+    guid: d2142da1aeef22d448bfdbaf645130b0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 96469516d3aea1e48a12852964855efd, type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 0c73d03d340c0974494b38e5254d596d, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 3a3592c9abd835a42861b93eff5bf6d4, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 01db54cade300364abf5915a4b27b9d0, type: 2}

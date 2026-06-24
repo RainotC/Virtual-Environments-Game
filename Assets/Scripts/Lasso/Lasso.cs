@@ -19,6 +19,8 @@ public class Lasso : MonoBehaviour
     [SerializeField] private Transform lassoAnchor; 
     [SerializeField] private GameObject lassoProjectileParent;
     [SerializeField] private InputManager lassoControllerInputManager;
+    [SerializeField] private bool isTutorial1 = false;
+    [SerializeField] private bool isTutorial2 = false;
 
     [Header("Lasso rings")]
     [SerializeField] private Transform ringLassoing;
@@ -211,6 +213,18 @@ public class Lasso : MonoBehaviour
         }
         if (targetObject != null)
         {
+            TutorialTarget tutorialScript = targetObject.GetComponent<TutorialTarget>();
+            if (tutorialScript != null)
+            {
+                if (isTutorial1)
+                {
+                    tutorialScript.TutorialCatch();
+                }
+                else if (isTutorial2)
+                {
+                    tutorialScript.Tutorial2Catch();
+                }
+            }
             Target targetScript = targetObject.GetComponent<Target>();
             if(targetScript != null)
             {
