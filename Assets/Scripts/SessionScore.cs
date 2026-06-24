@@ -27,4 +27,8 @@ public class SessionScore : MonoBehaviour
     {
         Score = 0;
     }
+    public void SetScore(int score)
+    {
+        Score = score;
+    }
 }

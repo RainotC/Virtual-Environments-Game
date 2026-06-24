@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
     private bool isGameOver = false;
     [SerializeField]private int score = 0;
 
+    [Header("Scene Switching")]
+    public string gameOverSceneName = "MainMenu";
+
+    public int Score => score;
 
     void Awake()
     {
@@ -40,7 +44,15 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (isGameOver) return;
+        if (isGameOver)
+        {
+            if (OVRInput.GetDown(OVRInput.Button.Two))
+            {
+                SceneManager.LoadScene(gameOverSceneName);
+            }
+
+            return;
+        }
 
         currentTime -= Time.deltaTime;
         UpdateTimerUI();
@@ -86,8 +98,13 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         isGameOver = true;
-        timerText.text = "Game over!";
-        
+        timerText.text = "Game over! \n - Press B on the controller to return to the main menu.";
+
+        if (SessionScore.Instance != null)
+        {
+            SessionScore.Instance.SetScore(score);
+        }
+
         Debug.Log("KONIEC CZASU – GAME OVER");
     }
 

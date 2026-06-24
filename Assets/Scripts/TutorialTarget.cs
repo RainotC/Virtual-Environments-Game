@@ -24,12 +24,21 @@ public class TutorialTarget : MonoBehaviour
 
     private static int tutorial2CatchCount = 0;
     private bool alreadyCaught = false;
-
+    public GameObject hitSmokePrefab;
     public void TutorialCatch()
     {
         if (alreadyCaught) return;
         alreadyCaught = true;
+        if (hitSmokePrefab != null)
+        {
+            GameObject fx = Instantiate(
+                hitSmokePrefab,
+                target.transform.position,
+                Quaternion.identity
+            );
 
+            Destroy(fx, 1f);
+        }
 
         if (tutorialText != null)
             tutorialText.text = congratulationsText;
@@ -46,6 +55,16 @@ public class TutorialTarget : MonoBehaviour
         alreadyCaught = true;
 
         tutorial2CatchCount++;
+        if (hitSmokePrefab != null)
+        {
+            GameObject fx = Instantiate(
+                hitSmokePrefab,
+                target.transform.position,
+                Quaternion.identity
+            );
+
+            Destroy(fx, 1f);
+        }
 
         if (tutorial2CatchCount >= catchesNeeded)
         {
