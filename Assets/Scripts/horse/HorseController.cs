@@ -13,6 +13,16 @@ public class HorseController : MonoBehaviour
     public Transform halter;
     //public Animator horseAnimator; //animacja konia
 
+    [Header("Reins Boost")]
+    public float verticalBoostThreshold = 0.2f;
+    public float boostMultiplier = 2f;
+    public float boostDuration = 1.2f;
+    public float boostCooldown = 1.2f;
+
+    private float lastHalterY;
+    private float boostTimer;
+    private float boostCooldownTimer;
+
     public Transform playerRig;
     private float lastHorseYaw;
     public SaddleBehaviour saddle;
@@ -63,6 +73,7 @@ public class HorseController : MonoBehaviour
         }
         else
         {
+            DetectReinsBoost();
             HandleSpeed();
             HandleTurning();
         }
@@ -72,6 +83,7 @@ public class HorseController : MonoBehaviour
 
     void Start()
     {
+        lastHalterY = halter.localPosition.y;
         lastHorseYaw = transform.eulerAngles.y;
         visualStartPos = horseVisual.localPosition; //MACIEJ
         visualStartRot = horseVisual.localRotation; //MACIEJ
@@ -80,6 +92,7 @@ public class HorseController : MonoBehaviour
     void LateUpdate()
     {
         RotatePlayerWithHorse();
+
     }
 
     void RotatePlayerWithHorse()
@@ -101,7 +114,9 @@ public class HorseController : MonoBehaviour
             zInput = 0f;
 
         float normalized = Mathf.InverseLerp(-maxForwardInput, maxForwardInput, zInput);
-        float targetSpeed = Mathf.Lerp(minSpeed, maxSpeed, normalized);
+        float boost = boostTimer > 0f ? boostMultiplier : 1f;
+        float targetSpeed = Mathf.Lerp(minSpeed, maxSpeed, normalized) * boost;
+        targetSpeed = Mathf.Clamp(targetSpeed, minSpeed, maxSpeed * boostMultiplier);
 
         currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, acceleration * Time.deltaTime);
     }
@@ -184,6 +199,22 @@ public class HorseController : MonoBehaviour
                pos.x > max.x ||
                pos.z < min.z ||
                pos.z > max.z;
+    }
+    void DetectReinsBoost()
+    {
+        float currentY = halter.localPosition.y;
+        float verticalSpeed = Mathf.Abs((currentY - lastHalterY) / Time.deltaTime);
+
+        boostCooldownTimer -= Time.deltaTime;
+        boostTimer -= Time.deltaTime;
+
+        if (verticalSpeed >= verticalBoostThreshold && boostCooldownTimer <= 0f)
+        {
+            boostTimer = boostDuration;
+            boostCooldownTimer = boostCooldown;
+        }
+
+        lastHalterY = currentY;
     }
 
 }
