@@ -11,7 +11,7 @@ public class HorseController : MonoBehaviour
     private Quaternion visualStartRot; //MACIEJ
 
     public Transform halter;
-    public Animator horseAnimator; //animacja konia
+    //public Animator horseAnimator; //animacja konia
 
     public Transform playerRig;
     private float lastHorseYaw;
@@ -54,7 +54,7 @@ public class HorseController : MonoBehaviour
 
     void Update()
     {
-        horseAnimator.SetFloat("Speed", currentSpeed);//animacja konia
+        //horseAnimator.SetFloat("Speed", currentSpeed);//animacja konia
         AnimateHorseVisual(); //MACIEJ
         if (!isReinsGrabbed || saddle.isMounted == false)
         {

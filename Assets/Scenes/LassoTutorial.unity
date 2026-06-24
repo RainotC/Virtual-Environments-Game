@@ -286,6 +286,8 @@ MonoBehaviour:
   timeToAdd: 10
   timerText: {fileID: 1487431444}
   scoreText: {fileID: 1107246228}
+  score: 0
+  gameOverSceneName: MainMenu
 --- !u!4 &31518042
 Transform:
   m_ObjectHideFlags: 0
@@ -10478,6 +10480,7 @@ MonoBehaviour:
   countdownSeconds: 30
   useDebugTimer: 0
   debugTimerSeconds: 5
+  hitSmokePrefab: {fileID: 141433446842962269, guid: 9fe8f8b3288e45a44af36ff8aa04486e, type: 3}
 --- !u!1 &1380943436 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1581428804983334834, guid: 1a47e3c0794bc0044bb0999976f314f7, type: 3}
