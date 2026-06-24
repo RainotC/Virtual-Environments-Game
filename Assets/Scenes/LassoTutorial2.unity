@@ -1552,6 +1552,11 @@ Transform:
   - {fileID: 1469166688}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &170698716 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 117324624642383929, guid: a3eabb630328b4b438f049f9c53aeff1, type: 3}
+  m_PrefabInstance: {fileID: 235664918}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &174305042
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1902,6 +1907,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 904080763476247802, guid: a3eabb630328b4b438f049f9c53aeff1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2648705649262390907, guid: a3eabb630328b4b438f049f9c53aeff1, type: 3}
       propertyPath: corner1
       value: 
@@ -2040,6 +2049,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4249182407274769529, guid: a3eabb630328b4b438f049f9c53aeff1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 418407151}
+    - targetCorrespondingSourceObject: {fileID: 117324624642383929, guid: a3eabb630328b4b438f049f9c53aeff1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1663747511}
   m_SourcePrefab: {fileID: 100100000, guid: a3eabb630328b4b438f049f9c53aeff1, type: 3}
 --- !u!1 &235664919 stripped
 GameObject:
@@ -13065,6 +13077,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 904080763476247802, guid: a3eabb630328b4b438f049f9c53aeff1, type: 3}
   m_PrefabInstance: {fileID: 235664918}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1663747511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170698716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 908283c662275784e84eff1588271c29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttachReinsToLeftHand
+  leftHandAnchor: {fileID: 214541956}
+  positionOffset: {x: 0, y: 0, z: 0}
+  rotationOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &1713099454
 GameObject:
   m_ObjectHideFlags: 0
