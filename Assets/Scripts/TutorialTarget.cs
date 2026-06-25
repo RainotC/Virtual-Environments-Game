@@ -74,18 +74,6 @@ public class TutorialTarget : MonoBehaviour
         HideTarget();
     }
 
-    private void AddCowPoints()
-    {
-        Debug.Log(gameObject.name + " caught!");
-
-        if (GameManager.Instance == null || target == null) return;
-
-        CowAI cowAi = target.GetComponent<CowAI>();
-
-        if (cowAi != null)
-            GameManager.Instance.AddPoint(cowAi.pointsToAdd);
-    }
-
     private IEnumerator ChangeSceneAfterDelay(string sceneName, float delay)
     {
         yield return new WaitForSeconds(delay);

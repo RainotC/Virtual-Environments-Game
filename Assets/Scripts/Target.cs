@@ -23,6 +23,11 @@ public class Target : MonoBehaviour
             {
                 GameManager.Instance.AddTime();
             }
+            Tumbleweed tumbleweed = target.GetComponent<Tumbleweed>();
+            if (tumbleweed != null)
+            {
+                GameManager.Instance.AddPoint(5);
+            }
         }
         if (hitSmokePrefab != null)
         {

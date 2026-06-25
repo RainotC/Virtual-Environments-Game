@@ -23,19 +23,20 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        
+    }
+
+    void Start()
+    {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
-    }
 
-    void Start()
-    {
         score = 0;
         currentTime = startTime;
         UpdateTimerUI();
@@ -98,7 +99,7 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         isGameOver = true;
-        timerText.text = "Game over! \n - Press B on the controller to return to the main menu.";
+        timerText.text = "Game over! \n Press B on the controller to return to the main menu.";
 
         if (SessionScore.Instance != null)
         {

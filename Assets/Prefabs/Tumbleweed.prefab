@@ -1,5 +1,73 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &598465669863212882
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2384419147362536425}
+  - component: {fileID: 3130775805824896553}
+  - component: {fileID: 1864302262311282070}
+  m_Layer: 7
+  m_Name: RaycastCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2384419147362536425
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598465669863212882}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3873248292764133208}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3130775805824896553
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598465669863212882}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 10, z: 3.0873475}
+  m_Center: {x: 0, y: 3, z: 0.092017174}
+--- !u!114 &1864302262311282070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598465669863212882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18e320236911f184da1823860870f8c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Target
+  target: {fileID: 6870187529163277410}
+  hitSmokePrefab: {fileID: 141433446842962269, guid: 9fe8f8b3288e45a44af36ff8aa04486e, type: 3}
 --- !u!1 &6870187529163277410
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,9 +77,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3873248292764133208}
-  m_Layer: 0
+  - component: {fileID: 2708077243575082554}
+  m_Layer: 7
   m_Name: Tumbleweed
-  m_TagString: Untagged
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,9 +98,25 @@ Transform:
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2384419147362536425}
   - {fileID: 9067207931258314457}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2708077243575082554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6870187529163277410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be4c7645674b10499dddb4f4576f863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tumbleweed
+  direction: {x: 0, y: 0, z: 1}
+  speed: 2
+  rotationSpeed: 180
 --- !u!1001 &8817917158613645618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -96,40 +181,25 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -1857309847194865932, guid: 3a315d424e252f6429badb25dade561d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3a315d424e252f6429badb25dade561d, type: 3}
       propertyPath: m_Name
       value: Tumbleweed
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3a315d424e252f6429badb25dade561d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8934777400606672865, guid: 3a315d424e252f6429badb25dade561d, type: 3}
     - {fileID: 65702495048144492, guid: 3a315d424e252f6429badb25dade561d, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3a315d424e252f6429badb25dade561d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8189963655547470525}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a315d424e252f6429badb25dade561d, type: 3}
---- !u!1 &8547516800776127587 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3a315d424e252f6429badb25dade561d, type: 3}
-  m_PrefabInstance: {fileID: 8817917158613645618}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8189963655547470525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8547516800776127587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5be4c7645674b10499dddb4f4576f863, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Tumbleweed
-  direction: {x: 0, y: 0, z: 1}
-  speed: 0
-  rotationSpeed: 180
 --- !u!4 &9067207931258314457 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3a315d424e252f6429badb25dade561d, type: 3}
